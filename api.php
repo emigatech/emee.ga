@@ -206,9 +206,16 @@
     http_response_code($_STATUS);
 
     print(json_encode([
-
         'system'  => [
-        	'status'=> $_STATUS, 
+        	'status'=> $_STATUS,
+        	'IP' => $_SERVER['HTTP_CF_CONNECTING_IP'] || null,
+        	'X-REQUEST' => $_SERVER['HTTP_CF_REQUEST_ID'] || null,
+        	'AGENT' => $_SERVER['HTTP_USER_AGENT'] || null,
+        	'RAY' => $_SERVER['HTTP_CF_RAY'] || null,
+        	'FORWARDED_FOR' => $_SERVER['HTTP_X_FORWARDED_FOR'] || null,
+        	'IP_COUNTRY' => $_SERVER['HTTP_CF_IPCOUNTRY'] || null,
+        	'SCHEME' => $_SERVER['REQUEST_SCHEME'] || null,
+        	'METHOD' => $_SERVER['REQUEST_METHOD'] || null
         ],
         'error'   => $_ERROR,
         'request' => $_REQUEST,

@@ -28,19 +28,19 @@
          *   skey     string
          *   chiper   alogorithm
          *   text     string|array
-         */require_once realpath($_SERVER["DOCUMENT_ROOT"])."/lib/calculate.php";        
+         */require_once realpath($_SERVER["DOCUMENT_ROOT"])."/api/v1/lib/calculate.php";        
     }
     else if(isset($_REQUEST['commit']) && !empty($_REQUEST['commit']) && $_REQUEST['commit'] == 'chipers')
     {
        /**
          *  Chipers
-         */require_once realpath($_SERVER["DOCUMENT_ROOT"])."/lib/chipers.php";        
+         */require_once realpath($_SERVER["DOCUMENT_ROOT"])."/api/v1/lib/chipers.php";        
     }    
     else if(isset($_REQUEST['commit']) && !empty($_REQUEST['commit']) && $_REQUEST['commit'] == 'date')
     {
        /**
          *  Date
-         */require_once realpath($_SERVER["DOCUMENT_ROOT"])."/lib/date.php";        
+         */require_once realpath($_SERVER["DOCUMENT_ROOT"])."/api/v1/lib/date.php";        
     } 
     else {
         array_push($_ERROR, 'Commit method is nulled');

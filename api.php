@@ -207,9 +207,8 @@
 
     print(json_encode([
 
-        'sytem'  => [
+        'system'  => [
         	'status'=> $_STATUS, 
-        	'metrics'=> $_SERVER
         ],
         'error'   => $_ERROR,
         'request' => $_REQUEST,

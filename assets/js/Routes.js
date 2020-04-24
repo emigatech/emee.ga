@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch, Redirect, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 import App from './src/App.js'
 
@@ -10,7 +10,7 @@ class Routes extends Component {
           <Switch>
             <Route exact path="/">
               <App/>
-            </Route>
+            </Route>            
             <Route path="*">
               <h1>Error 404</h1>
             </Route>
@@ -19,4 +19,5 @@ class Routes extends Component {
     );
   }
 };
+
 export default Routes;

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import Encrypt from './components/Encrypt';
+
 
 class App extends Component {
     render() {
 
       return (
         <div>
-          <h1>Hello World</h1>
+          <Encrypt/>
         </div>
       );
     }

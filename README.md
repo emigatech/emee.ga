@@ -1,6 +1,14 @@
 # **eminmuhammadi/emeega**
 ### Open source PHP environment for React JS projects. Make PHP great Again !
 
+## Security
+```
+	location ~ /(api/v1/(lib/|vendor/|.*\.(gitignore|md|json|lock)$|LICENSE|.gitignore)|node_modules/|assets/|src/|vendor/|LICENSE|.*\.(env|env.sample|config.js|json|lock|md|yml)$|.git/|.github/) {
+	 	deny all;
+		return 403;
+        }
+```
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.

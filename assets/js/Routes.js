@@ -11,15 +11,6 @@ class Routes extends Component {
             <Route exact path="/">
               <App/>
             </Route>
-
-            <Route path="/about-old">
-              <Redirect to="/about" />
-            </Route>
-
-            <Route path="/about">
-              <h1>About Us</h1>
-            </Route>
-
             <Route path="*">
               <h1>Error 404</h1>
             </Route>

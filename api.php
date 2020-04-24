@@ -11,7 +11,7 @@
     require_once realpath($_SERVER["DOCUMENT_ROOT"])."/vendor/autoload.php";
 
     $_ERROR = [];
-    $_DATA = [];
+    $_DATA;
 
 	header("Access-Control-Allow-Origin: *");
 	header("Access-Control-Allow-Methods: GET, POST");

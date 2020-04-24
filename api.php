@@ -207,7 +207,10 @@
 
     print(json_encode([
 
-        'status'  => $_STATUS,
+        'sytem'  => [
+        	'status'=> $_STATUS, 
+        	'metrics'=> $_SERVER
+        ],
         'error'   => $_ERROR,
         'request' => $_REQUEST,
     	'response'=> $_DATA

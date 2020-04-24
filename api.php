@@ -3,6 +3,10 @@
     /*
      *   HideMyData API Endpoint
      */
+    
+    ini_set('display_errors', 0);
+    ini_set('display_startup_errors', 0);
+    error_reporting(0);
 
     require_once realpath($_SERVER["DOCUMENT_ROOT"])."/vendor/autoload.php";
 
@@ -10,11 +14,13 @@
     $_DATA = [];
 
 	header("Access-Control-Allow-Origin: *");
-	header("Access-Control-Allow-Headers: *");
+	header("Access-Control-Allow-Methods: GET, POST");
 
-    if(isset($_REQUEST['data']) && !empty($_REQUEST['data'])) {
 
-        /**
+    if(isset($_REQUEST['commit']) && !empty($_REQUEST['commit']) && $_REQUEST['commit'] == 'calculate')
+    {
+       /**
+         *   Calculate
          *   format   normal|array
          *   action   encrypt|decrypt
          *   timer    => n number ; stamp second|minute|hour|day|week|month|year;
@@ -22,200 +28,40 @@
          *   skey     string
          *   chiper   alogorithm
          *   text     string|array
-         */
-
-        /*
-         *  Action
-         */
-        if( (isset($_REQUEST['data']['format']) && !empty($_REQUEST['data']['format'])) && 
-            (isset($_REQUEST['data']['action']) && !empty($_REQUEST['data']['action']))) 
-        {
-
-
-            /*
-             *  Check Text, Pkey , Skey
-             */
-            if( (isset($_REQUEST['data']['pkey']) && !empty($_REQUEST['data']['pkey']))  && 
-                (isset($_REQUEST['data']['skey']) && !empty($_REQUEST['data']['skey']))  &&
-                (isset($_REQUEST['data']['text']) && !empty($_REQUEST['data']['text']))  &&
-                (isset($_REQUEST['data']['chiper']) && !empty($_REQUEST['data']['chiper'])))
-            {
-
-                $_PKEY = $_REQUEST['data']['pkey'];
-                $_SKEY = $_REQUEST['data']['skey'];
-                $_TEXT = $_REQUEST['data']['text'];   
-                $_CHIPER = $_REQUEST['data']['chiper'];
-
-                $_HIDEMYDATA = (new eminmuhammadi\HideMyData\HideMyData($_PKEY,$_SKEY,$_CHIPER));
-             
-
-                /*
-                 *   Normal
-                 */
-                if($_REQUEST['data']['action'] == 'decrypt') {
-
-                    if(isset($_REQUEST['data']['timer'])) {
-
-                        if((isset($_REQUEST['data']['timer']['n']) && !empty($_REQUEST['data']['timer']['n'])) &&
-                            (isset($_REQUEST['data']['timer']['n']) && !empty($_REQUEST['data']['timer']['stamp'])))
-                        {
-                                
-                            $_N     = $_REQUEST['data']['timer']['n'];
-                            $_STAMP = $_REQUEST['data']['timer']['stamp'];
-
-
-                            if($_REQUEST['data']['format'] == 'normal') 
-                            {
-
-                                $_DATA = $_HIDEMYDATA->decrypt($_TEXT,$_N+' '+$_STAMP);
-                            }
-
-                            else if($_REQUEST['data']['format'] == 'array')
-                            {
-
-                                $_DATA = $_HIDEMYDATA->ArrayDecrypt($_TEXT,$_N+' '+$_STAMP);
-                            }
-
-                            else {
-
-                                array_push($_ERROR, 'The format type is mismatched');
-                            }// else=> format mismatch
-                            
-
-                        }
-                        
-                        else {
-
-                            array_push($_ERROR, 'The n or stamp of timer is nulled');
-                        }// else => n or stamp is nulled
-
-                    }
-
-                    else {
-
-                        if($_REQUEST['data']['format'] == 'normal') 
-                        {
-
-                            $_DATA = $_HIDEMYDATA->decrypt($_TEXT);
-                        }
-
-                        else if($_REQUEST['data']['format'] == 'array')
-                        {
-
-                            $_DATA = $_HIDEMYDATA->ArrayDecrypt($_TEXT);
-                        }
-
-                        else {
-
-                            array_push($_ERROR, 'The format type is mismatched');
-                        }// else=> format mismatch
-                    }
-                        
-                }
-
-                else if($_REQUEST['data']['action'] == 'encrypt') {
-
-                    if(isset($_REQUEST['data']['timer'])) {
-
-                        if((isset($_REQUEST['data']['timer']['n']) && !empty($_REQUEST['data']['timer']['n'])) &&
-                            (isset($_REQUEST['data']['timer']['n']) && !empty($_REQUEST['data']['timer']['stamp'])))
-                        {
-                                
-                            $_N     = $_REQUEST['data']['timer']['n'];
-                            $_STAMP = $_REQUEST['data']['timer']['stamp'];
-
-
-                            if($_REQUEST['data']['format'] == 'normal') 
-                            {
-
-                                $_DATA = $_HIDEMYDATA->encrypt($_TEXT,$_N+' '+$_STAMP);
-                            }
-
-                            else if($_REQUEST['data']['format'] == 'array')
-                            {
-
-                                $_DATA = $_HIDEMYDATA->ArrayEncrypt($_TEXT,$_N+' '+$_STAMP);
-                            }
-
-                            else {
-
-                                array_push($_ERROR, 'The format type is mismatched');
-                            }// else=> format mismatch
-                            
-
-                        }
-                        
-                        else {
-
-                            array_push($_ERROR, 'The n or stamp of timer is nulled');
-                        }// else => n or stamp is nulled
-
-                    }
-
-                    else {
-
-                        if($_REQUEST['data']['format'] == 'normal') 
-                        {
-
-                            $_DATA = $_HIDEMYDATA->encrypt($_TEXT);
-                        }
-
-                        else if($_REQUEST['data']['format'] == 'array')
-                        {
-
-                            $_DATA = $_HIDEMYDATA->ArrayEncrypt($_TEXT);
-                        }
-
-                        else {
-
-                            array_push($_ERROR, 'The format type is mismatched');
-                        }// else=> format mismatch
-                    }
-                        
-                }
-
-                else {
-
-                    array_push($_ERROR, 'The action type is mismatched');
-                }// else=> action is mismatched
-
-            }
-
-            else {
- 
-                array_push($_ERROR, 'The skey, pkey, chiper or text is nulled');
-            }// else=> action or format is nulled
-
-        }
-        
-        else {
-
-            array_push($_ERROR, 'The action or format is nulled ');
-        }// else=>
-
+         */require_once realpath($_SERVER["DOCUMENT_ROOT"])."/lib/calculate.php";        
     }
-
+    else if(isset($_REQUEST['commit']) && !empty($_REQUEST['commit']) && $_REQUEST['commit'] == 'chipers')
+    {
+       /**
+         *  Chipers
+         */require_once realpath($_SERVER["DOCUMENT_ROOT"])."/lib/chipers.php";        
+    }    
+    else if(isset($_REQUEST['commit']) && !empty($_REQUEST['commit']) && $_REQUEST['commit'] == 'date')
+    {
+       /**
+         *  Date
+         */require_once realpath($_SERVER["DOCUMENT_ROOT"])."/lib/date.php";        
+    } 
     else {
-
-        array_push($_ERROR, 'The request is nulled');
-    }// request null
-
-
+        array_push($_ERROR, 'Commit method is nulled');
+    } 
 
     (empty($_ERROR)) ? $_STATUS = 200 : $_STATUS = 500;
     http_response_code($_STATUS);
 
-    print(json_encode([
+    die(json_encode([
+
+    	'API' => 'eminmuhammadi/HideMyData',
         'system'  => [
         	'status'=> $_STATUS,
-        	'IP' => $_SERVER['HTTP_CF_CONNECTING_IP'] || null,
-        	'X-REQUEST' => $_SERVER['HTTP_CF_REQUEST_ID'] || null,
-        	'AGENT' => $_SERVER['HTTP_USER_AGENT'] || null,
-        	'RAY' => $_SERVER['HTTP_CF_RAY'] || null,
-        	'FORWARDED_FOR' => $_SERVER['HTTP_X_FORWARDED_FOR'] || null,
-        	'IP_COUNTRY' => $_SERVER['HTTP_CF_IPCOUNTRY'] || null,
-        	'SCHEME' => $_SERVER['REQUEST_SCHEME'] || null,
-        	'METHOD' => $_SERVER['REQUEST_METHOD'] || null
+        	'IP' => $_SERVER['HTTP_CF_CONNECTING_IP'],
+        	'X-REQUEST' => $_SERVER['HTTP_CF_REQUEST_ID'],
+        	'AGENT' => $_SERVER['HTTP_USER_AGENT'],
+        	'RAY' => $_SERVER['HTTP_CF_RAY'],
+        	'FORWARDED_FOR' => $_SERVER['HTTP_X_FORWARDED_FOR'],
+        	'IP_COUNTRY' => $_SERVER['HTTP_CF_IPCOUNTRY'],
+        	'SCHEME' => $_SERVER['REQUEST_SCHEME'],
+        	'METHOD' => $_SERVER['REQUEST_METHOD']
         ],
         'error'   => $_ERROR,
         'request' => $_REQUEST,

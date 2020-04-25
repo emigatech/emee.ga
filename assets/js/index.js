@@ -1,16 +1,26 @@
 import ReactDOM from 'react-dom';
 import React from "react";
-
+import { createMuiTheme , ThemeProvider } from '@material-ui/core/styles';
+import Routes from './Routes';
 import $ from 'jquery';
 import 'popper.js';
 import 'bootstrap';
 
-import Routes from './Routes';
+const theme = createMuiTheme({
+  palette : {
+    primary : {
+      main: '#0000FF'
+    },
+    secondary: {
+      main: '#7EC8E3'
+    },
+    contrastThreshold: 3,
+    tonalOffset: 0.2
+  }
+});
 
 ReactDOM.render(
-
-<React.StrictMode>
+<ThemeProvider theme={theme}>
   <Routes/>
-</React.StrictMode>
-
+</ThemeProvider>
 ,document.getElementById('emee-ga'));

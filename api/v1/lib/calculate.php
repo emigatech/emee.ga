@@ -2,6 +2,8 @@
 
 if (count(get_included_files()) == 1) die("Direct access not permitted.");
 
+require_once realpath($_SERVER["DOCUMENT_ROOT"])."/vendor/autoload.php";
+
 if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
 {
 
@@ -52,13 +54,13 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
                         if ($_REQUEST['data']['format'] == 'normal')
                         {
 
-                            $_DATA = $_HIDEMYDATA->decrypt($_TEXT, $_N + ' ' + $_STAMP);
+                            $_DATA = $_HIDEMYDATA->decrypt($_TEXT, strval($_N).' '.$_STAMP);
                         }
 
                         else if ($_REQUEST['data']['format'] == 'array')
                         {
 
-                            $_DATA = $_HIDEMYDATA->ArrayDecrypt($_TEXT, $_N + ' ' + $_STAMP);
+                            $_DATA = $_HIDEMYDATA->ArrayDecrypt($_TEXT, strval($_N).' '.$_STAMP);
                         }
 
                         else
@@ -66,8 +68,8 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
 
                             array_push($_ERROR, 'The format type is mismatched');
                         } // else=> format mismatch
-                        
-                        
+
+
                     }
 
                     else
@@ -75,7 +77,7 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
 
                         array_push($_ERROR, 'The n or stamp of timer is nulled');
                     } // else => n or stamp is nulled
-                    
+
                 }
 
                 else
@@ -98,7 +100,7 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
 
                         array_push($_ERROR, 'The format type is mismatched');
                     } // else=> format mismatch
-                    
+
                 }
 
             }
@@ -118,13 +120,13 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
                         if ($_REQUEST['data']['format'] == 'normal')
                         {
 
-                            $_DATA = $_HIDEMYDATA->encrypt($_TEXT, $_N + ' ' + $_STAMP);
+                            $_DATA = $_HIDEMYDATA->encrypt($_TEXT, strval($_N).' '.$_STAMP);
                         }
 
                         else if ($_REQUEST['data']['format'] == 'array')
                         {
 
-                            $_DATA = $_HIDEMYDATA->ArrayEncrypt($_TEXT, $_N + ' ' + $_STAMP);
+                            $_DATA = $_HIDEMYDATA->ArrayEncrypt($_TEXT, strval($_N).' '.$_STAMP);
                         }
 
                         else
@@ -132,7 +134,7 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
 
                             array_push($_ERROR, 'The format type is mismatched');
                         } // else=> format mismatch
-                                                
+
                     }
 
                     else
@@ -140,7 +142,7 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
 
                         array_push($_ERROR, 'The n or stamp of timer is nulled');
                     } // else => n or stamp is nulled
-                    
+
                 }
 
                 else
@@ -163,7 +165,7 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
 
                         array_push($_ERROR, 'The format type is mismatched');
                     } // else=> format mismatch
-                    
+
                 }
 
             }
@@ -173,7 +175,7 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
 
                 array_push($_ERROR, 'The action type is mismatched');
             } // else=> action is mismatched
-            
+
         }
 
         else
@@ -181,7 +183,7 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
 
             array_push($_ERROR, 'The skey, pkey, chiper or text is nulled');
         } // else=> action or format is nulled
-        
+
     }
 
     else
@@ -189,7 +191,7 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
 
         array_push($_ERROR, 'The action or format is nulled ');
     } // else=> action format is nulled
-    
+
 }
 
 else

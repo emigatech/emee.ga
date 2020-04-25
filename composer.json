@@ -1,6 +1,6 @@
 {
-    "name": "eminmuhammadi/emeega",
-    "description": "Make PHP great again",
+    "name": "emigatech/emeega",
+    "description": "Online Encrypto Calcualtor",
     "type": "project",
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -15,7 +15,7 @@
             "eminmuhammadi\\emeega\\": "src/"
         },
         "classmap": ["src/"]
-    },    
+    },
     "require": {
         "twig/twig": "^2.0",
         "twig/cache-extension": "~1.0",
@@ -33,6 +33,7 @@
         "laminas/laminas-code": "^3.4",
         "nochso/html-compress-twig": "*",
         "cache/apcu-adapter": "^1.0",
-        "doctrine/cache": "^1.10"
+        "doctrine/cache": "^1.10",
+        "eminmuhammadi/hidemydata": "^2.0"
     }
 }

@@ -1,0 +1,24 @@
+/*
+ * Paletee  https://canva.com/colors/color-palettes/the-deep-blue/
+ */
+
+$c-main : #0000FF;
+$c-secodary : #7EC8E3;
+$c-main-child : #000C66;
+$c-main-parent : #050A30;
+
+
+* {
+  font-family: 'Roboto' , sans-serif !important;
+}
+
+.bg-main {
+  background-color: $c-main !important;
+}
+.bg-secondary {
+  background-color: $c-secodary !important;
+}
+
+.result {
+  color: $c-main;
+}

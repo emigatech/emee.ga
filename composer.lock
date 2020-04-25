@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7e1e1e13c902f254e50d0b38dde691c8",
+    "content-hash": "7426d5f14936fcef3720428b0d0508fb",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -272,6 +272,50 @@
                 "xcache"
             ],
             "time": "2019-11-29T15:36:20+00:00"
+        },
+        {
+            "name": "eminmuhammadi/hidemydata",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eminmuhammadi/HideMyData.git",
+                "reference": "bfc645926042d5739d797d4dea57ef1f96678a28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eminmuhammadi/HideMyData/zipball/bfc645926042d5739d797d4dea57ef1f96678a28",
+                "reference": "bfc645926042d5739d797d4dea57ef1f96678a28",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "php": "^7.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "eminmuhammadi\\hidemydata\\": "src/"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emin Muhammadi",
+                    "email": "muemin17631@sabah.edu.az"
+                }
+            ],
+            "description": "Managing a couple of algorithms to decrypt or encrypt text",
+            "time": "2020-03-03T21:32:52+00:00"
         },
         {
             "name": "laminas/laminas-code",

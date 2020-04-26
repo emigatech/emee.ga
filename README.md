@@ -3,10 +3,10 @@
 
 ## Security
 ```
-	location ~ /(api/v1/(lib/|vendor/|.*\.(gitignore|md|json|lock)$|LICENSE|.gitignore)|node_modules/|assets/|src/|vendor/|LICENSE|.*\.(env|env.sample|config.js|json|lock|md|yml)$|.git/|.github/) {
+	location ~ /(api/v1/(lib/|vendor/|package.json|.*\.(gitignore|md|lock)$|LICENSE|.gitignore)|node_modules/|assets/|src/|vendor/|LICENSE|package.json|.*\.(env|env.sample|config.js|lock|md|yml)$|.git/|.github/) {
 	 	deny all;
 		return 403;
-  }
+        }
 ```
 
 ## Getting Started

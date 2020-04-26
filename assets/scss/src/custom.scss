@@ -13,12 +13,28 @@ $c-main-parent : #050A30;
 }
 
 .bg-main {
-  background-color: $c-main !important;
+  background-color: $c-main;
 }
 .bg-secondary {
-  background-color: $c-secodary !important;
+  background-color: $c-secodary;
 }
 
 .result {
   color: $c-main;
+}
+
+.sticky-offset {
+  top: 2rem;
+}
+
+.no-text-break {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.data-error {
+  height: 200px !important;
+  padding-bottom: 20px;
+  float:left !important;
 }

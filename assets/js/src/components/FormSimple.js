@@ -2,8 +2,6 @@ import React, { Component } from "react";
 
 import { ValidatorForm } from 'react-material-ui-form-validator';
 import Chiper from '../elements/Chiper.js';
-import NumberDate from '../elements/NumberDate.js';
-import StampDate  from '../elements/StampDate.js';
 import PublicKey from '../elements/PublicKey.js';
 import SecretKey from '../elements/SecretKey.js';
 import Text from '../elements/Text.js';
@@ -12,30 +10,49 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Tooltip from '@material-ui/core/Tooltip';
 import qs from 'qs';
 
-class Form extends Component {
+class FormSimple extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      redirect: false,
       action: '',
       pkey: '',
       skey: '',
       text: '',
       chiper: 'aes-256-cbc',
-      timer_n: 1,
-      timer_stamp: 'day'
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   handleChange(value) {
     this.setState(value)
   }
 
+  handleFlash(event, reason) {
+    if(reason == 'clickaway') {
+      return;
+    }
+    this.setState({open:false});
+  }
+
   handleSubmit(event) {
     event.preventDefault();
+
+    const data = {
+      commit: 'calculate',
+      data: {
+        format: 'normal',
+        action: this.state.action,
+        pkey: this.state.pkey,
+        skey: this.state.skey,
+        text: this.state.text,
+        chiper: this.state.chiper
+      }
+    };
 
     fetch('/api/v1/api.php',
       {
@@ -43,26 +60,16 @@ class Form extends Component {
         headers: {
           'content-type' : 'application/x-www-form-urlencoded'
         },
-        body:qs.stringify({
-          commit: 'calculate',
-          data: {
-            format: 'normal',
-            action: this.state.action,
-            pkey: this.state.pkey,
-            skey: this.state.skey,
-            text: this.state.text,
-            chiper: this.state.chiper,
-            timer: {
-              n: this.state.timer_n,
-              stamp: this.state.timer_stamp
-            }
-          }
-        })
+        body:qs.stringify(data)
     })
     .then(res => res.json())
     .then(
       (data)=>{
-        console.log(data);
+        let Cache = localStorage.getItem('cache') ? JSON.parse(localStorage.getItem('cache')) : [];
+        Cache.push(JSON.parse(JSON.stringify(data)));
+
+        localStorage.setItem('cache',JSON.stringify(Cache));
+        this.props.window.location.reload();
       }
     )
   }
@@ -79,33 +86,6 @@ class Form extends Component {
             className="align-middle pb-4"
       >
           <div className="row">
-            <div className="col-md-12">
-              <div className="row">
-                {/* Number Date */}
-                <div className="col-md-6">
-                  <NumberDate name="timer_n"
-                              value={this.state.timer_n}
-                              change= {
-                                e => this.handleChange({
-                                  timer_n : e.target.value
-                                })
-                              }
-
-                  />
-                </div>
-                {/* Valid Date */}
-                <div className="col-md-6">
-                  <StampDate name="timer_stamp"
-                             value={this.state.timer_stamp}
-                             change= {
-                               e=> this.handleChange({
-                                 timer_stamp : e.target.value
-                               })
-                             }
-                  />
-                </div>
-              </div>
-            </div>
             {/* Chiper */}
             <div className="col-md-12">
               <Chiper name="chiper"
@@ -187,4 +167,4 @@ class Form extends Component {
   }
 };
 
-export default Form;
+export default FormSimple;

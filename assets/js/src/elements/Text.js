@@ -11,7 +11,7 @@ class Text extends Component {
                  label="Text"
                  multiline
                  placeholder="Please, Enter a text"
-                 rows={2}
+                 rows={3}
                  variant="outlined"
                  className="form-control mt-5"
                  InputLabelProps={{

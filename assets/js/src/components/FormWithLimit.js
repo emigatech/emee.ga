@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Recaptcha from 'react-google-invisible-recaptcha';
 
 import { ValidatorForm } from 'react-material-ui-form-validator';
 import Chiper from '../elements/Chiper.js';
@@ -31,6 +32,7 @@ class FormWithLimit extends Component {
   }
 
   handleChange(value) {
+    this.recaptcha.reset();
     this.setState(value)
   }
 
@@ -75,6 +77,10 @@ class FormWithLimit extends Component {
     )
   }
 
+  onSubmit(){
+    this.recaptcha.execute();
+  }
+
   render() {
     return (
       <ValidatorForm
@@ -86,6 +92,10 @@ class FormWithLimit extends Component {
             method="POST"
             className="align-middle pb-4"
       >
+          <Recaptcha
+          ref={ ref => this.recaptcha = ref }
+          sitekey="6LcwIO8UAAAAADvSTIM6us5NqPCYvLhv7gleKysF"
+          onResolved={ this.handleSubmit } />
           <div className="row">
             <div className="col-md-12">
               <div className="row">

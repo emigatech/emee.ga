@@ -21,4 +21,3 @@ ReactDOM.render(
   <Routes/>
 </ThemeProvider>
 ,document.getElementById('emee-ga'));
-serviceWorker.register();

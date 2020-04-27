@@ -54,13 +54,13 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
                         if ($_REQUEST['data']['format'] == 'normal')
                         {
 
-                            $_DATA = $_HIDEMYDATA->decrypt($_TEXT, strval($_N).' '.$_STAMP);
+                            $_DATA = $_HIDEMYDATA->decrypt($_TEXT, "$_N $_STAMP");
                         }
 
                         else if ($_REQUEST['data']['format'] == 'array')
                         {
 
-                            $_DATA = $_HIDEMYDATA->ArrayDecrypt($_TEXT, strval($_N).' '.$_STAMP);
+                            $_DATA = $_HIDEMYDATA->ArrayDecrypt($_TEXT, "$_N $_STAMP");
                         }
 
                         else
@@ -120,13 +120,13 @@ if (isset($_REQUEST['data']) && !empty($_REQUEST['data']))
                         if ($_REQUEST['data']['format'] == 'normal')
                         {
 
-                            $_DATA = $_HIDEMYDATA->encrypt($_TEXT, strval($_N).' '.$_STAMP);
+                            $_DATA = $_HIDEMYDATA->encrypt($_TEXT, "$_N $_STAMP");
                         }
 
                         else if ($_REQUEST['data']['format'] == 'array')
                         {
 
-                            $_DATA = $_HIDEMYDATA->ArrayEncrypt($_TEXT, strval($_N).' '.$_STAMP);
+                            $_DATA = $_HIDEMYDATA->ArrayEncrypt($_TEXT, "$_N $_STAMP");
                         }
 
                         else

@@ -17,11 +17,11 @@ class FormWithLimit extends Component {
     super(props);
 
     this.state = {
-      action: '',
-      pkey: '',
-      skey: '',
-      text: '',
-      chiper: 'aes-256-cbc',
+      swl_action: '',
+      swl_pkey: '',
+      swl_skey: '',
+      swl_text: '',
+      swl_chiper: 'aes-256-cbc',
       timer_n: 1,
       timer_stamp: 'day'
     };
@@ -41,11 +41,11 @@ class FormWithLimit extends Component {
       commit: 'calculate',
       data: {
         format: 'normal',
-        action: this.state.action,
-        pkey: this.state.pkey,
-        skey: this.state.skey,
-        text: this.state.text,
-        chiper: this.state.chiper,
+        action: this.state.swl_action,
+        pkey: this.state.swl_pkey,
+        skey: this.state.swl_skey,
+        text: this.state.swl_text,
+        chiper: this.state.swl_chiper,
         timer: {
           n: this.state.timer_n,
           stamp: this.state.timer_stamp
@@ -64,6 +64,8 @@ class FormWithLimit extends Component {
     .then(res => res.json())
     .then(
       (data)=>{
+        console.log(data);
+
         let Cache = localStorage.getItem('cache') ? JSON.parse(localStorage.getItem('cache')) : [];
         Cache.push(JSON.parse(JSON.stringify(data)));
 
@@ -112,77 +114,77 @@ class FormWithLimit extends Component {
                 </div>
               </div>
             </div>
-            {/* Chiper */}
+            {/* swl_chiper */}
             <div className="col-md-12">
-              <Chiper name="chiper"
-                      value={this.state.chiper}
+              <Chiper name="swl_chiper"
+                      value={this.state.swl_chiper}
                       change= {
                         e=> this.handleChange({
-                          chiper: e.target.value
+                          swl_chiper: e.target.value
                         })
                       }
               />
             </div>
             {/* Public Key */}
             <div className="col-md-12">
-              <PublicKey name="pkey"
-                         value={this.state.pkey}
+              <PublicKey name="swl_pkey"
+                         value={this.state.swl_pkey}
                          change= {
                            e=> this.handleChange({
-                             pkey: e.target.value
+                             swl_pkey: e.target.value
                            })
                          }
                />
             </div>
             {/* Secret Key */}
             <div className="col-md-12">
-              <SecretKey name="skey"
-                         value={this.state.skey}
+              <SecretKey name="swl_skey"
+                         value={this.state.swl_skey}
                          change= {
                            e=> this.handleChange({
-                             skey: e.target.value
+                             swl_skey: e.target.value
                            })
                          }
               />
             </div>
-            {/* Text */}
+            {/* swl_text */}
             <div className="col-md-12">
-              <Text name="text"
-                    value={this.state.text}
+              <Text name="swl_text"
+                    value={this.state.swl_text}
                     change= {
                       e=> this.handleChange({
-                        text: e.target.value
+                        swl_text: e.target.value
                       })
                     }
               />
             </div>
-            {/* Action */}
+            {/* swl_action */}
             <div className="col-md-12 pt-3">
               <ButtonGroup variant="outlined"
                            fullWidth={true}
                            size="large"
                            color="primary"
-                           aria-label="Action Menu"
+                           aria-label="swl_action Menu"
                            className="bg-white mt-5"
               >
                 <Tooltip title="Click to encrypt" aria-label="Encrypt">
                   <Button onClick={
                     e=> this.handleChange({
-                      action: 'encrypt'
+                      swl_action: 'encrypt'
                     })
                   }
                   type="submit"
-                  name="action"
+                  name="swl_action"
                   value="encrypt">Encrypt</Button>
                 </Tooltip>
                 <Tooltip title="Click to decrypt" aria-label="Decrypt">
                   <Button onClick={
                     e=> this.handleChange({
-                      action: 'decrypt'
+                      swl_action: 'decrypt'
                     })
                   }
                   type="submit"
-                  name="action"
+                  name="swl_action"
                   value="decrypt">Decrypt</Button>
                 </Tooltip>
               </ButtonGroup>

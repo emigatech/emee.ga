@@ -19,14 +19,12 @@ class NumberDate extends Component {
                  validators={[
                    'required',
                    'minNumber:0',
-                   'maxNumber:255',
-                   'matchRegexp:^[0-9]$'
+                   'maxNumber:255'
                  ]}
                  errorMessages={[
                    'This field is required',
                    'Minimum number is 0',
-                   'Maximum number is 255',
-                   'Only numbers allowed'
+                   'Maximum number is 255'
                  ]}
       />
     );

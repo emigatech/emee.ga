@@ -49,22 +49,22 @@ class Chiper extends Component {
 
     return(
       <TextValidator value={this.props.value}
-                 name={this.props.name}
-                 onChange={this.props.change}
-                 select
-                 label="Chiper"
-                 variant="outlined"
-                 className="form-control mt-5"
-                 InputLabelProps={{
-                   shrink: true,
-                   'aria-label':'Chiper'
-                 }}
-                 validators={[
-                   'required'
-                 ]}
-                 errorMessages={[
-                   'This field is required'
-                 ]}
+                     name={this.props.name}
+                     onChange={this.props.change}
+                     select
+                     label="Chiper"
+                     variant="outlined"
+                     className="form-control mt-5"
+                     InputLabelProps={{
+                       shrink: true,
+                       'aria-label':'Chiper'
+                     }}
+                     validators={[
+                       'required'
+                     ]}
+                     errorMessages={[
+                       'This field is required'
+                     ]}
       >
       <MenuItem disabled>List of chipers</MenuItem>
       {(()=>{

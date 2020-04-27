@@ -35,10 +35,10 @@ class Results extends Component {
         <div className="container-fluid mt-5 result">
            {
               data.reverse().map((data, index) => (
-                <Paper key={index} className="container mb-5 result-border" variant="outlined">
+                <Paper aria-label="results" key={index} className="container mb-5 result-border" variant="outlined">
                   <div className="p-2 row">
                       <div className="col-md-12 p-0 table-responsive">
-                        <Table aria-label="table-results" className="table-hover table table-borderless">
+                        <Table aria-label="results-table" className="table-hover table table-borderless">
                           <TableBody>
                             <TableRow>
                                 <TableCell className="no-text-break pt-3 mb-1" component="th" scope="row">
@@ -51,22 +51,22 @@ class Results extends Component {
                                 </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell className="no-text-break pt-3 mb-1" component="th" scope="row">
-                                <b>Secret Key</b>
-                              </TableCell>
-                                <TableCell>
-                                  <SyntaxHighlighter language="plaintext" className="pt-2 pb-2 mb-1" style={ascetic}>
-                                    {data.request.data.skey}
-                                  </SyntaxHighlighter>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
                                 <TableCell className="no-text-break pt-3 mb-1" component="th" scope="row">
                                   <b>Public Key</b>
                                 </TableCell>
                                 <TableCell>
                                   <SyntaxHighlighter language="plaintext" className="pt-2 pb-2 mb-1" style={ascetic}>
                                     {data.request.data.pkey}
+                                  </SyntaxHighlighter>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell className="no-text-break pt-3 mb-1" component="th" scope="row">
+                                <b>Secret Key</b>
+                              </TableCell>
+                                <TableCell>
+                                  <SyntaxHighlighter language="plaintext" className="pt-2 pb-2 mb-1" style={ascetic}>
+                                    {data.request.data.skey}
                                   </SyntaxHighlighter>
                                 </TableCell>
                             </TableRow>

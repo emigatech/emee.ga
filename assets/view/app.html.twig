@@ -70,6 +70,7 @@
       </script>
     </head>
     <body class="bg-main">
+      
         <div id="loading" class="mt-5 text-center text-light">
           <img style="filter:invert(1);" src="{{ PUBLIC_URL }}{{ PUBLIC_PATH }}/emiga-logo.png" class="img-fluid" height="100px" width="100px" alt="emiga-logo"/>
           <div class="pt-2 pb-2 mt-5">
@@ -83,6 +84,7 @@
         </div>
         <div id="emee-ga"></div>
         {{ JS | raw }}
+
         <script>
             if('serviceWorker' in navigator) {
               navigator.serviceWorker.register('/public/service-worker.js')

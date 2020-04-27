@@ -68,9 +68,10 @@
       <script type="text/javascript">
         window.onload=function(){function e(e){return e.stopPropagation?e.stopPropagation():window.event&&(window.event.cancelBubble=!0),e.preventDefault(),!1}document.addEventListener("contextmenu",function(e){e.preventDefault()},!1),document.addEventListener("keydown",function(t){t.ctrlKey&&t.shiftKey&&73==t.keyCode&&e(t),t.ctrlKey&&t.shiftKey&&74==t.keyCode&&e(t),83==t.keyCode&&(navigator.platform.match("Mac")?t.metaKey:t.ctrlKey)&&e(t),t.ctrlKey&&85==t.keyCode&&e(t),123==event.keyCode&&e(t)},!1)};
       </script>
+      <style>pwa-install::part(updateToast) {background-color:#0000ff; color:#fff;}</style>
     </head>
     <body class="bg-main">
-      
+
         <div id="loading" class="mt-5 text-center text-light">
           <img style="filter:invert(1);" src="{{ PUBLIC_URL }}{{ PUBLIC_PATH }}/emiga-logo.png" class="img-fluid" height="100px" width="100px" alt="emiga-logo"/>
           <div class="pt-2 pb-2 mt-5">
@@ -84,18 +85,11 @@
         </div>
         <div id="emee-ga"></div>
         {{ JS | raw }}
-
-        <script>
-            if('serviceWorker' in navigator) {
-              navigator.serviceWorker.register('/public/service-worker.js')
-              .then(function(registration){
-                console.log('Service Worker registered: ',registration.scope);
-              })
-              .catch(function(err){
-                console.error('Service worker unregistered: ',err)
-              })
-            }
-        </script>
+        <pwa-update showStorageEstimate
+                    swpath="/public/service-worker.js"
+                    updatemessage="Please, update app">
+        </pwa-update>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate"></script>
     </body>
 </html>
 {% endhtmlcompress %}

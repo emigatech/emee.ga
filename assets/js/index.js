@@ -1,7 +1,5 @@
 import ReactDOM from 'react-dom';
 import React from "react";
-import * as serviceWorker from './serviceWorker';
-
 import { createMuiTheme , ThemeProvider } from '@material-ui/core/styles';
 import Routes from './Routes';
 

@@ -27,6 +27,7 @@
     "qs": "^6.9.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-google-invisible-recaptcha": "^0.2.11",
     "react-helmet": "^6.0.0",
     "react-material-ui-form-validator": "^2.0.10",
     "react-router-dom": "^5.1.2",

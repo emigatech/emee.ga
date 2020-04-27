@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Recaptcha from 'react-google-invisible-recaptcha';
 
 import { ValidatorForm } from 'react-material-ui-form-validator';
 import Chiper from '../elements/Chiper.js';
@@ -29,14 +30,8 @@ class FormSimple extends Component {
   }
 
   handleChange(value) {
-    this.setState(value)
-  }
-
-  handleFlash(event, reason) {
-    if(reason == 'clickaway') {
-      return;
-    }
-    this.setState({open:false});
+    this.recaptcha.reset();
+    this.setState(value);
   }
 
   handleSubmit(event) {
@@ -65,6 +60,7 @@ class FormSimple extends Component {
     .then(res => res.json())
     .then(
       (data)=>{
+
         let Cache = localStorage.getItem('cache') ? JSON.parse(localStorage.getItem('cache')) : [];
         Cache.push(JSON.parse(JSON.stringify(data)));
 
@@ -74,17 +70,25 @@ class FormSimple extends Component {
     )
   }
 
+  onSubmit(){
+    this.recaptcha.execute();
+  }
+
   render() {
     return (
       <ValidatorForm
             ref="form"
-            onSubmit={this.handleSubmit}
+            onSubmit={ this.onSubmit }
             onError={errors=>console.log(errors)}
             noValidate
             autoComplete="off"
             method="POST"
             className="align-middle pb-4"
       >
+          <Recaptcha
+          ref={ ref => this.recaptcha = ref }
+          sitekey="6LcwIO8UAAAAADvSTIM6us5NqPCYvLhv7gleKysF"
+          onResolved={ this.handleSubmit } />
           <div className="row">
             {/* Chiper */}
             <div className="col-md-12">

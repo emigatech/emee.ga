@@ -32,14 +32,13 @@ class FormWithLimit extends Component {
   }
 
   handleChange(value) {
-    this.recaptcha.reset();
     this.setState(value)
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit() {
 
     const data = {
+      handshake: this.recaptcha.getResponse(),
       commit: 'calculate',
       data: {
         format: 'normal',
@@ -75,17 +74,14 @@ class FormWithLimit extends Component {
         this.props.window.location.reload();
       }
     )
-  }
 
-  onSubmit(){
-    this.recaptcha.execute();
   }
 
   render() {
     return (
       <ValidatorForm
             ref="form"
-            onSubmit={this.handleSubmit}
+            onSubmit={(e)=>{e.preventDefault();this.recaptcha.execute();}}
             onError={errors=>console.log(errors)}
             noValidate
             autoComplete="off"
@@ -93,9 +89,9 @@ class FormWithLimit extends Component {
             className="align-middle pb-4"
       >
           <Recaptcha
-          ref={ ref => this.recaptcha = ref }
-          sitekey="6LcwIO8UAAAAADvSTIM6us5NqPCYvLhv7gleKysF"
-          onResolved={ this.handleSubmit } />
+            ref={ ref => {this.recaptcha = ref;}}
+            onResolved={(e)=>{this.handleSubmit(e);}}
+            sitekey="6LcwIO8UAAAAADvSTIM6us5NqPCYvLhv7gleKysF"/>
           <div className="row">
             <div className="col-md-12">
               <div className="row">

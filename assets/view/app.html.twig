@@ -1,4 +1,4 @@
-{% cache 'app/html?v=1.0.0' 900 %}
+{% cache 'app/html?v=0.0.3' 900 %}
 {% htmlcompress %}
 <!DOCTYPE html>
 <html>
@@ -12,6 +12,9 @@
       <meta name="msapplication-TileColor" content="#0000FF" />
 
       <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+      <link rel="dns-prefetch" href="https://tagmanager.google.com" />
+      <link rel="dns-prefetch" href="https://analytics.google.com" />
+      <link rel="dns-prefetch" href="https://google.com" />
 
       <title>emee.ga | Crypto Calculator</title>
       <meta name="description" content="Crypto Calculator" />
@@ -85,11 +88,6 @@
         </div>
         <div id="emee-ga"></div>
         {{ JS | raw }}
-        <pwa-update showStorageEstimate
-                    swpath="/public/service-worker.js"
-                    updatemessage="Please, update app">
-        </pwa-update>
-        <script type="module" src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate"></script>
     </body>
 </html>
 {% endhtmlcompress %}

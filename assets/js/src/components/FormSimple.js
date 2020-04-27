@@ -16,7 +16,6 @@ class FormSimple extends Component {
     super(props);
 
     this.state = {
-      redirect: false,
       action: '',
       pkey: '',
       skey: '',
@@ -26,69 +25,64 @@ class FormSimple extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   handleChange(value) {
-    this.recaptcha.reset();
     this.setState(value);
   }
 
   handleSubmit(event) {
-    event.preventDefault();
 
-    const data = {
-      commit: 'calculate',
-      data: {
-        format: 'normal',
-        action: this.state.action,
-        pkey: this.state.pkey,
-        skey: this.state.skey,
-        text: this.state.text,
-        chiper: this.state.chiper
-      }
-    };
+      const data = {
+        handshake: this.recaptcha.getResponse(),
+        commit: 'calculate',
+        data: {
+          format: 'normal',
+          action: this.state.action,
+          pkey: this.state.pkey,
+          skey: this.state.skey,
+          text: this.state.text,
+          chiper: this.state.chiper
+        }
+      };
 
-    fetch('/api/v1/api.php',
-      {
-        method: 'post',
-        headers: {
-          'content-type' : 'application/x-www-form-urlencoded'
-        },
-        body:qs.stringify(data)
-    })
-    .then(res => res.json())
-    .then(
-      (data)=>{
+      fetch('/api/v1/api.php',
+        {
+          method: 'post',
+          headers: {
+            'content-type' : 'application/x-www-form-urlencoded'
+          },
+          body:qs.stringify(data)
+      })
+      .then(res => res.json())
+      .then(
+        (data)=>{
 
-        let Cache = localStorage.getItem('cache') ? JSON.parse(localStorage.getItem('cache')) : [];
-        Cache.push(JSON.parse(JSON.stringify(data)));
+          let Cache = localStorage.getItem('cache') ? JSON.parse(localStorage.getItem('cache')) : [];
+          Cache.push(JSON.parse(JSON.stringify(data)));
 
-        localStorage.setItem('cache',JSON.stringify(Cache));
-        this.props.window.location.reload();
-      }
-    )
-  }
+          localStorage.setItem('cache',JSON.stringify(Cache));
+          this.props.window.location.reload();
+        }
+      )
 
-  onSubmit(){
-    this.recaptcha.execute();
   }
 
   render() {
     return (
       <ValidatorForm
             ref="form"
-            onSubmit={ this.onSubmit }
+            onSubmit={(e)=>{e.preventDefault();this.recaptcha.execute();}}
             onError={errors=>console.log(errors)}
             noValidate
             autoComplete="off"
             method="POST"
             className="align-middle pb-4"
       >
-          <Recaptcha
-          ref={ ref => this.recaptcha = ref }
-          sitekey="6LcwIO8UAAAAADvSTIM6us5NqPCYvLhv7gleKysF"
-          onResolved={ this.handleSubmit } />
+        <Recaptcha
+            ref={ ref => {this.recaptcha = ref;}}
+            onResolved={(e)=>{this.handleSubmit(e);}}
+            sitekey="6LcwIO8UAAAAADvSTIM6us5NqPCYvLhv7gleKysF"/>
           <div className="row">
             {/* Chiper */}
             <div className="col-md-12">

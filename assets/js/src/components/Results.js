@@ -7,6 +7,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { tomorrowNightBlue, ascetic } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
@@ -14,28 +15,28 @@ class Results extends Component {
   constructor(props) {
 
     super(props);
-    this.state = {
-      data: []
-    };
-  }
-
-  componentDidMount() {
-
-    this.setState({
-      data : localStorage.getItem('cache') ? JSON.parse(localStorage.getItem('cache')) : []
-    })
   }
 
   render() {
 
-    const { data } = this.state;
+    const data = localStorage.getItem('cache') ? JSON.parse(localStorage.getItem('cache')) : [];
 
     if(data.length > 0) {
       return (
         <div className="container-fluid mt-5 result">
+           <Paper className="d-flex justify-content-between mt-1 mb-1 container pt-2 pb-2" variant="outlined">
+              <div>
+                  <p className="custom-text-margin">Total {data.length} results</p>
+              </div>
+              <div>
+                  <Button className="mt-2" size="small" onClick={(event)=>{localStorage.removeItem('cache'); this.props.window.location.reload();}} variant="contained" color="primary" disableElevation>
+                    Clear
+                  </Button>
+              </div>
+           </Paper>
            {
               data.reverse().map((data, index) => (
-                <Paper aria-label="results" key={index} className="container mb-5 result-border" variant="outlined">
+                <Paper aria-label="results" key={index} className="container mb-3 mt-3" variant="outlined">
                   <div className="p-2 row">
                       <div className="col-md-12 p-0 table-responsive">
                         <Table aria-label="results-table" className="table-hover table table-borderless">

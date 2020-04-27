@@ -49,13 +49,13 @@ export default function App(){
         <Helmet>
           <style>{`body{background-color:#ffffff !important;}#loading{display:none !important;}`}</style>
         </Helmet>
-        <div className="mt-2 text-center">
+        <div className="mt-2 pt-2 text-center">
             <img src={Logo} className="img-fluid rounded" alt="emiga-logo" height="32px" width="32px"/>
         </div>
         <div className="row">
           <div className="col-md-4">
             <div className="container sticky-top sticky-offset">
-            <Paper elevation={3} className="shadow-lg mt-5">
+            <Paper elevation={3} className="shadow-lg mt-2">
               <Tabs value={value}
                     onChange={handleChange}
                     aria-label="wrapped tabs"
@@ -80,7 +80,7 @@ export default function App(){
             </div>
           </div>
           <Paper elevation={0} square className="col-md-8 min-vh-100 pb-5">
-              <Results/>
+              <Results window={window}/>
           </Paper>
         </div>
     </div>

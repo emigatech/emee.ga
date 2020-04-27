@@ -1,10 +1,9 @@
 import ReactDOM from 'react-dom';
 import React from "react";
+import * as serviceWorker from './serviceWorker';
+
 import { createMuiTheme , ThemeProvider } from '@material-ui/core/styles';
 import Routes from './Routes';
-import $ from 'jquery';
-import 'popper.js';
-import 'bootstrap';
 
 const theme = createMuiTheme({
   palette : {
@@ -24,3 +23,4 @@ ReactDOM.render(
   <Routes/>
 </ThemeProvider>
 ,document.getElementById('emee-ga'));
+serviceWorker.register();

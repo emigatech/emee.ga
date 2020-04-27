@@ -7,7 +7,7 @@
     "start_url": "https://emee.ga",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#f3f3f3",
+    "theme_color": "#0000FF",
     "permissions": ["gcm", "storage", "notifications"],
     "related_applications": [
         {

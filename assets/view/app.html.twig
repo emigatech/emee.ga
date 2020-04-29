@@ -90,8 +90,8 @@
         {{ JS | raw }}
         <script type="text/javascript">
             if('serviceWorker' in navigator){
-              navigator.serviceWorker.register('/public/sw.js',{
-                scope:'/'
+              navigator.serviceWorker.register('/sw.js',{
+                scope:'./'
               })
               .then(function(registration){
                 console.log('ServiceWorker registration successful with scope: ',registration.scope)

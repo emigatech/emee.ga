@@ -13,39 +13,16 @@ class StampDate extends Component {
       data: []
     };
   }
-  componentDidMount () {
 
-    fetch('/api/v1/api.php',
-      {
-        method: 'post',
-        headers: {
-          'content-type' : 'application/x-www-form-urlencoded'
-        },
-        body:qs.stringify({
-          commit: 'date'
-        })
-    })
-    .then(res => res.json())
-    .then(
-      (result) => {
-        this.setState({
-          isLoaded: true,
-          data: result
-        });
-      },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      }
-    )
+  componentDidMount () {
+    this.setState({
+      isLoaded: true,
+      data: JSON.parse(this.props.window.API.date)
+    });
   }
+
   render() {
-    const { error, isLoaded, data } = this.state;
+    const { isLoaded, data } = this.state;
       return(
         <TextValidator value={this.props.value}
                    name={this.props.name}
@@ -67,15 +44,12 @@ class StampDate extends Component {
         >
         <MenuItem disabled>List of limits</MenuItem>
         {(()=>{
-          if(error){
-            return null;
-          }
-          else if(!isLoaded) {
+          if(!isLoaded) {
             return null;
           }
           else {
           return(
-            data.response.map((data, index) => (
+            data.map((data, index) => (
               <MenuItem key={index} value={data}>{data}</MenuItem>
             ))
           )}

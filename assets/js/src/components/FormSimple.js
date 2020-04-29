@@ -87,6 +87,7 @@ class FormSimple extends Component {
             {/* Chiper */}
             <div className="col-md-12">
               <Chiper name="chiper"
+                      window={this.props.window}
                       value={this.state.chiper}
                       change= {
                         e=> this.handleChange({

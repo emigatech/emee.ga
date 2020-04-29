@@ -110,6 +110,7 @@ class FormWithLimit extends Component {
                 {/* Valid Date */}
                 <div className="col-md-6">
                   <StampDate name="timer_stamp"
+                             window={this.props.window}
                              value={this.state.timer_stamp}
                              change= {
                                e=> this.handleChange({
@@ -123,6 +124,7 @@ class FormWithLimit extends Component {
             {/* swl_chiper */}
             <div className="col-md-12">
               <Chiper name="swl_chiper"
+                      window={this.props.window}
                       value={this.state.swl_chiper}
                       change= {
                         e=> this.handleChange({

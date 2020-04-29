@@ -4,6 +4,11 @@
 	*  @author Emin eminmuhammadi <muemin17631@sabah.edu.az>
 	*  @license MIT
 	*/
+
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+
 	require_once 'vendor/autoload.php';
 
 	/**
@@ -33,5 +38,7 @@
 		'PUBLIC_URL'   => $_ENV['PUBLIC_URL'],
 		'PUBLIC_PATH'  => $_ENV['PUBLIC_PATH'],
 		'CSS' => ($build->build_css_tags('css/app',$_ENV['PUBLIC_URL'])),
-		'JS'  => ($build->build_js_tags('js/app',$_ENV['PUBLIC_URL']))
+		'JS'  => ($build->build_js_tags('js/app',$_ENV['PUBLIC_URL'])),
+		'API_CHIPERS' => json_encode(openssl_get_cipher_methods()),
+		'API_DATE' => json_encode(['second','minute','hour','day','week','month','year'])
 	]));

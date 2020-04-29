@@ -24,19 +24,19 @@ composer install && npm install
 ```
 ### Production
 ```bash
-npm run production
+npm run build:prod
+```
+or
+```bash
+./node_modules/.bin/encore production
+```
+### Development
+```bash
+npm run build:dev
 ```
 or
 ```bash
 ./node_modules/.bin/encore dev --watch
-```
-### Development
-```bash
-npm run dev
-```
-or
-```bash
-./node_modules/.bin/encore dev
 ```
 
 ## Configuration

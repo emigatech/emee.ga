@@ -88,6 +88,13 @@
         <div id="emee-ga"></div>
         <script type="text/javascript">var API = {chipers : `{{API_CHIPERS | raw}}`, date:`{{API_DATE | raw}}`};</script>
         {{ JS | raw }}
+        <script type="text/javascript">
+            if ('serviceWorker' in navigator) {
+              window. addEventListener('load', function(){
+                navigator.serviceWorker.register('/public/sw.js');
+              });
+            }
+        </script>
     </body>
 </html>
 {% endhtmlcompress %}
